@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="hostFormApp">
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="app.css">
+    <!-- for CSS Transitions and/or Keyframe Animations -->
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="questionnaire/questionnaire.js"></script>
+
+</head>
+
+<body>
+<p>I'm the main page</p>
+<ul class="menu">
+    <li><a href="#/hello">hello</a></li>
+    <li><a href="#/questionnaire">questionnaire</a></li>
+</ul>
+<div class="view-container">
+    <div ng-view class="view-frame"></div>
+</div>
+</body>
+</html>
