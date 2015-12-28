@@ -21,7 +21,7 @@ describe('Questionnaire module', function () {
             ctrl = $controller('QuestionnaireCtrl', {$scope: scope});
         }));
 
-        it('should db_log', inject(function ($rootScope, $controller) {
+        it('should be defined', inject(function () {
             expect(ctrl).toBeDefined();
         }));
 
