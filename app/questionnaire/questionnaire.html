@@ -85,21 +85,30 @@
         </div>
 
         <div layout-gt-sm="row" class="spaceTypeRadioButton">
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Residential'" flex-gt-sm="">
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Residential'"
+                                flex-gt-sm="">
                 <md-radio-group ng-model="user.place.residentialDescription">
-                    <md-radio-button ng-repeat="placeResidentialOption in placeResidentialOptions" ng-value="placeResidentialOption.entry">{{placeResidentialOption.entry}}</md-radio-button>
+                    <md-radio-button ng-repeat="placeResidentialOption in placeResidentialOptions"
+                                     ng-value="placeResidentialOption.entry">{{placeResidentialOption.entry}}
+                    </md-radio-button>
                 </md-radio-group>
             </md-input-container>
 
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Hospitality'" flex-gt-sm="">
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Hospitality'"
+                                flex-gt-sm="">
                 <md-radio-group ng-model="user.place.hospitalityDescription">
-                    <md-radio-button ng-repeat="placeHospitalOption in placeHospitalOptions" ng-value="placeHospitalOption.entry">{{placeHospitalOption.entry}}</md-radio-button>
+                    <md-radio-button ng-repeat="placeHospitalOption in placeHospitalOptions"
+                                     ng-value="placeHospitalOption.entry">{{placeHospitalOption.entry}}
+                    </md-radio-button>
                 </md-radio-group>
             </md-input-container>
 
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Workspace'" flex-gt-sm="">
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Workspace'"
+                                flex-gt-sm="">
                 <md-radio-group ng-model="user.place.residentialDescription">
-                    <md-radio-button ng-repeat="placeWorkspaceOption in placeWorkspaceOptions" ng-value="placeWorkspaceOption.entry">{{placeWorkspaceOption.entry}}</md-radio-button>
+                    <md-radio-button ng-repeat="placeWorkspaceOption in placeWorkspaceOptions"
+                                     ng-value="placeWorkspaceOption.entry">{{placeWorkspaceOption.entry}}
+                    </md-radio-button>
                 </md-radio-group>
             </md-input-container>
 
@@ -111,13 +120,45 @@
     </form>
 
 
-    <form name="userPlacePictureForm">
+    <form name="userPlacePictureForm" flow-prevent-drop flow-drag-enter="dropClass='drag-over'"
+          flow-drag-leave="dropClass=''" layout-gt-sm="row">
+        <div flow-init
+             flow-name="uploader.flow"
+             flow-files-submitted="uploader.flow.upload()"
+             flow-file-added="!!{png: 1, gif: 1, jpg: 1, jpeg: 1}[$file.getExtension()]">
+            <div class="drag-zone" flow-drop ng-class="dropClass">
+                <p class="md-title">Please share with us a few pictures of your space.</p>
+                <span class="btn btn-default" flow-btn>Upload Image</span>
+                <b>OR</b>
+                Drag And Drop your images here
+            </div>
 
+            <br>
+
+            <div>
+                <div ng-repeat="file in uploader.flow.files" class="gallery-box">
+                    <span class="title">{{file.name}}</span>
+                    <div class="thumbnail" ng-show="$flow.files.length">
+                        <img flow-img="file" src=""/>
+                    </div>
+                    <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                        <div class="progress-bar" role="progressbar"
+                             aria-valuenow="{{file.progress() * 100}}"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             ng-style="{width: (file.progress() * 100) + '%'}">
+                            <span class="sr-only">{{file.progress()}}% Complete</span>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-xs btn-danger" ng-click="file.cancel()">
+                            Remove
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
-
-
-
-
 
 
     <!--<md-content layout-padding="">-->

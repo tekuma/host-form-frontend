@@ -12,6 +12,8 @@ module.exports = function (config) {
             'app/bower_components/angular-animate/angular-animate.js',
             'app/bower_components/angular-messages/angular-messages.js',
             'app/bower_components/angular-material-icons/angular-material-icons.js',
+            'app/bower_components/ng-flow/dist/ng-flow-standalone.js',
+            'app/directives/tkMdCapitalizeFirstLetter.js',
             'app/app.js',
             'app/questionnaire/**/*.js',
             'app/hello/**/*.js',
