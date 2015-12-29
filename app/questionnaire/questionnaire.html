@@ -1,93 +1,148 @@
-<div ng-controller="QuestionnaireCtrl" layout="column" ng-cloak="" class="md-inline-form" ng-app="hostFormApp">
+<div ng-controller="QuestionnaireCtrl" ng-cloak="" class="md-inline-form" ng-app="hostFormApp" layout-padding="">
 
-    <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="">
-        <div>
-            <form name="userCriticalForm">
-                <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm="">
-                        <label>Hi! What is your name?</label>
-                        <input ng-model="user.name" title="" capitalize-first>
-                    </md-input-container>
+    <form name="userNameAndEmailForm" layout="row" layout-xs="column">
+        <md-input-container class="md-block" flex>
+            <label>
+                <ng-md-icon icon="perm_identity"></ng-md-icon>
+                Hi! What is your name?</label>
+            <input name="userName" ng-model="user.name" title="" capitalize-first-letter="" required>
+
+            <div ng-messages="userNameAndEmailForm.userName.$error" role="alert" multiple>
+                <div ng-message="required" class="my-message">You must provide your name.</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex>
+            <label>
+                <ng-md-icon icon="email"></ng-md-icon>
+                What is your email?</label>
+            <input name="userEmail" ng-model="user.email" type="email" title="" required ng-pattern="/^.+@.+\..+$/">
+
+            <div ng-messages="userNameAndEmailForm.userEmail.$error" role="alert" multiple>
+                <div ng-message-exp="['required', 'pattern']">
+                    You must provide a valid email.
                 </div>
+            </div>
+        </md-input-container>
+    </form>
 
-                <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm="">
-                        <label>What is your email? Our team will get back to you within 24 hours.</label>
-                        <input name="userEmail" ng-model="user.email" type="email" title="" required>
 
-                        <div ng-messages="userCriticalForm.userEmail.$error" role="alert" multiple>
-                            <div ng-message="required" class="my-message">You must provide an email address.</div>
-                        </div>
-                    </md-input-container>
+    <form name="userAddressForm">
+        <md-input-container class="md-block">
+            <label>
+                <ng-md-icon icon="place"></ng-md-icon>
+                Address of your place</label>
+            <input ng-model="user.address" title="">
+        </md-input-container>
+
+        <md-input-container md-no-float="" class="md-block">
+            <input ng-model="user.address2" placeholder="Address 2">
+        </md-input-container>
+
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>City</label>
+                <input ng-model="user.city" title="">
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>State</label>
+                <md-select ng-model="user.state">
+                    <md-option ng-repeat="state in states" ng-value="state.abbrev">
+                        {{state.abbrev}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>Postal Code</label>
+                <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required=""
+                       ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+
+                <div ng-messages="userAddressForm.postalCode.$error" role="alert" multiple>
+                    <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                    <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                        code.
+                    </div>
+                    <div ng-message="md-maxlength" class="my-message">
+                        Don't use the long version silly...we don't need to be that specific...
+                    </div>
                 </div>
-            </form>
+            </md-input-container>
         </div>
-    </md-content>
+    </form>
 
-    <md-content layout-padding="">
-        <div>
-            <form name="userForm">
-
-                <div layout-gt-xs="row">
-                    <md-input-container class="md-block" flex-gt-xs="">
-                        <label>Company (Disabled)</label>
-                        <input ng-model="user.company" disabled="" title="">
-                    </md-input-container>
-
-                    <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date">
-                    </md-datepicker>
-                </div>
-
-
-                <md-input-container class="md-block">
-                    <label>Address</label>
-                    <input ng-model="user.address" title="">
-                </md-input-container>
-
-                <md-input-container md-no-float="" class="md-block">
-                    <input ng-model="user.address2" placeholder="Address 2">
-                </md-input-container>
-
-                <div layout-gt-sm="row">
-                    <md-input-container class="md-block" flex-gt-sm="">
-                        <label>City</label>
-                        <input ng-model="user.city" title="">
-                    </md-input-container>
-
-                    <md-input-container class="md-block" flex-gt-sm="">
-                        <label>State</label>
-                        <md-select ng-model="user.state">
-                            <md-option ng-repeat="state in states" value="{{state.abbrev}}">
-                                {{state.abbrev}}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-
-                    <md-input-container class="md-block" flex-gt-sm="">
-                        <label>Postal Code</label>
-                        <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required=""
-                               ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-
-                        <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
-                            <div ng-message="required" class="my-message">You must supply a postal code.</div>
-                            <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-                                code.
-                            </div>
-                            <div ng-message="md-maxlength" class="my-message">
-                                Don't use the long version silly...we don't need to be that specific...
-                            </div>
-                        </div>
-                    </md-input-container>
-                </div>
-
-                <md-input-container class="md-block">
-                    <label>Biography</label>
-                    <textarea ng-model="user.biography" cols="1" md-maxlength="150" rows="5" title=""></textarea>
-                </md-input-container>
-
-
-            </form>
+    <form name="userAddressForm">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm="">
+                <label>What type of space do you have?</label>
+                <md-select ng-model="user.place.placeType">
+                    <md-option ng-repeat="placeType in placeTypes" ng-value="placeType.entry">
+                        {{placeType.entry}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
         </div>
-    </md-content>
+
+        <div layout-gt-sm="row" class="spaceTypeRadioButton">
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Residential'" flex-gt-sm="">
+                <md-radio-group ng-model="user.place.residentialDescription">
+                    <md-radio-button ng-repeat="placeResidentialOption in placeResidentialOptions" ng-value="placeResidentialOption.entry">{{placeResidentialOption.entry}}</md-radio-button>
+                </md-radio-group>
+            </md-input-container>
+
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Hospitality'" flex-gt-sm="">
+                <md-radio-group ng-model="user.place.hospitalityDescription">
+                    <md-radio-button ng-repeat="placeHospitalOption in placeHospitalOptions" ng-value="placeHospitalOption.entry">{{placeHospitalOption.entry}}</md-radio-button>
+                </md-radio-group>
+            </md-input-container>
+
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Workspace'" flex-gt-sm="">
+                <md-radio-group ng-model="user.place.residentialDescription">
+                    <md-radio-button ng-repeat="placeWorkspaceOption in placeWorkspaceOptions" ng-value="placeWorkspaceOption.entry">{{placeWorkspaceOption.entry}}</md-radio-button>
+                </md-radio-group>
+            </md-input-container>
+
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Other'" flex-gt-sm="">
+                <textarea ng-model="user.place.otherDescription" cols="1" md-maxlength="150" rows="5" title=""
+                          placeholder="Describes your space?"></textarea>
+            </md-input-container>
+        </div>
+    </form>
+
+
+    <form name="userPlacePictureForm">
+
+    </form>
+
+
+
+
+
+
+    <!--<md-content layout-padding="">-->
+    <!--<div>-->
+    <!--<form name="userForm">-->
+
+    <!--<div layout-gt-xs="row">-->
+    <!--<md-input-container class="md-block" flex-gt-xs="">-->
+    <!--<label>Company (Disabled)</label>-->
+    <!--<input ng-model="user.company" disabled="" title="">-->
+    <!--</md-input-container>-->
+
+    <!--<md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date">-->
+    <!--</md-datepicker>-->
+    <!--</div>-->
+
+
+    <!--<md-input-container class="md-block">-->
+    <!--<label>Biography</label>-->
+    <!--<textarea ng-model="user.biography" cols="1" md-maxlength="150" rows="5" title=""></textarea>-->
+    <!--</md-input-container>-->
+
+
+    <!--</form>-->
+    <!--</div>-->
+    <!--</md-content>-->
 
 </div>

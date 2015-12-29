@@ -3,7 +3,8 @@
 /* App Module */
 angular.module('hostFormApp', [
         'ngRoute',
-        'hostForm.questionnaire'
+        'hostForm.questionnaire',
+        'ngMdIcons'
     ])
 
     .config(['$routeProvider',
@@ -22,7 +23,7 @@ angular.module('hostFormApp', [
             })
         }])
 
-    .directive('capitalizeFirst', function () {
+    .directive('capitalizeFirstLetter', function ($parse) {
         return {
             require: 'ngModel',
             link: function(scope, element, attrs, modelCtrl) {

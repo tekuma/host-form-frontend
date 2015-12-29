@@ -1,2 +1,10 @@
 .md-datepicker-button {
     width: 36px; }
+
+ng-md-icon {
+    fill:#EE0088
+}
+
+.spaceTypeRadioButton .ipsum {
+    color: #EE0088;
+    font-size: 0.9em; }
