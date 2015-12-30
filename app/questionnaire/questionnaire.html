@@ -1,5 +1,6 @@
 <div ng-controller="QuestionnaireCtrl" ng-cloak="" class="md-inline-form" ng-app="hostFormApp" layout-padding="">
 
+    <!--TODO: 1. Add submit button 2. Put forms in different files -->
     <form name="userNameAndEmailForm" layout="row" layout-xs="column">
         <md-input-container class="md-block" flex>
             <label>
@@ -28,24 +29,24 @@
 
 
     <form name="userAddressForm">
-        <md-input-container class="md-block">
+        <md-input-container class="md-block" layout="row">
             <label>
                 <ng-md-icon icon="place"></ng-md-icon>
                 Address of your place</label>
             <input ng-model="user.address" title="">
         </md-input-container>
 
-        <md-input-container md-no-float="" class="md-block">
+        <md-input-container md-no-float="" class="md-block" layout="row">
             <input ng-model="user.address2" placeholder="Address 2">
         </md-input-container>
 
-        <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm="">
+        <div layout="row" layout-xs="column">
+            <md-input-container class="md-block" flex="40">
                 <label>City</label>
                 <input ng-model="user.city" title="">
             </md-input-container>
 
-            <md-input-container class="md-block" flex-gt-sm="">
+            <md-input-container class="md-block" flex="30">
                 <label>State</label>
                 <md-select ng-model="user.state">
                     <md-option ng-repeat="state in states" ng-value="state.abbrev">
@@ -54,7 +55,7 @@
                 </md-select>
             </md-input-container>
 
-            <md-input-container class="md-block" flex-gt-sm="">
+            <md-input-container class="md-block" flex="30">
                 <label>Postal Code</label>
                 <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required=""
                        ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
@@ -72,21 +73,20 @@
         </div>
     </form>
 
-    <form name="userAddressForm">
-        <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm="">
-                <label>What type of space do you have?</label>
-                <md-select ng-model="user.place.placeType">
-                    <md-option ng-repeat="placeType in placeTypes" ng-value="placeType.entry">
-                        {{placeType.entry}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-        </div>
 
-        <div layout-gt-sm="row" class="spaceTypeRadioButton">
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Residential'"
-                                flex-gt-sm="">
+    <form name="userSpaceForm" layout="row" layout-xs="column">
+        <md-input-container class="md-block" flex="30">
+            <label>What type of space do you have?</label>
+            <md-select ng-model="user.place.placeType">
+                <md-option ng-repeat="placeType in placeTypes" ng-value="placeType.entry">
+                    {{placeType.entry}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+
+        <div class="spaceTypeRadioButton" flex="70">
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Residential'">
                 <md-radio-group ng-model="user.place.residentialDescription">
                     <md-radio-button ng-repeat="placeResidentialOption in placeResidentialOptions"
                                      ng-value="placeResidentialOption.entry">{{placeResidentialOption.entry}}
@@ -94,8 +94,7 @@
                 </md-radio-group>
             </md-input-container>
 
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Hospitality'"
-                                flex-gt-sm="">
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Hospitality'">
                 <md-radio-group ng-model="user.place.hospitalityDescription">
                     <md-radio-button ng-repeat="placeHospitalOption in placeHospitalOptions"
                                      ng-value="placeHospitalOption.entry">{{placeHospitalOption.entry}}
@@ -103,8 +102,7 @@
                 </md-radio-group>
             </md-input-container>
 
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Workspace'"
-                                flex-gt-sm="">
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Workspace'">
                 <md-radio-group ng-model="user.place.residentialDescription">
                     <md-radio-button ng-repeat="placeWorkspaceOption in placeWorkspaceOptions"
                                      ng-value="placeWorkspaceOption.entry">{{placeWorkspaceOption.entry}}
@@ -112,30 +110,29 @@
                 </md-radio-group>
             </md-input-container>
 
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Other'" flex-gt-sm="">
-                <textarea ng-model="user.place.otherDescription" cols="1" md-maxlength="150" rows="5" title=""
-                          placeholder="Describes your space?"></textarea>
+            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Other'">
+    <textarea ng-model="user.place.otherDescription" cols="1" md-maxlength="150" rows="5" title=""
+              placeholder="Describes your space?"></textarea>
             </md-input-container>
         </div>
     </form>
 
 
-    <form name="userPlacePictureForm" flow-prevent-drop flow-drag-enter="dropClass='drag-over'"
-          flow-drag-leave="dropClass=''" layout-gt-sm="row">
+    <form name="userPlacePictureForm"
+          flow-prevent-drop
+          flow-drag-enter="dropClass='drag-over'"
+          flow-drag-leave="dropClass=''">
         <div flow-init
              flow-name="uploader.flow"
              flow-files-submitted="uploader.flow.upload()"
              flow-file-added="!!{png: 1, gif: 1, jpg: 1, jpeg: 1}[$file.getExtension()]">
-            <div class="drag-zone" flow-drop ng-class="dropClass">
-                <p class="md-title">Please share with us a few pictures of your space.</p>
-                <span class="btn btn-default" flow-btn>Upload Image</span>
-                <b>OR</b>
-                Drag And Drop your images here
+            <div layout="column" class="drag-zone" flow-drop ng-class="dropClass">
+                <p class="md-title" flex="">Please share with us a few pictures of your space.</p>
+                <p flex=""><span class="btn btn-default" flow-btn>Upload Image</span> <b>OR</b> Drag And Drop your
+                    images here </p>
             </div>
 
-            <br>
-
-            <div>
+            <div layout="row">
                 <div ng-repeat="file in uploader.flow.files" class="gallery-box">
                     <span class="title">{{file.name}}</span>
                     <div class="thumbnail" ng-show="$flow.files.length">
@@ -161,29 +158,43 @@
     </form>
 
 
-    <!--<md-content layout-padding="">-->
-    <!--<div>-->
-    <!--<form name="userForm">-->
+    <form name="userMiscellaneousForm">
+        <div layout="row">
+            <md-input-container md-no-float="" class="md-block" flex="50">
+                <label>How many rooms do you have?</label>
+                <textarea ng-model="user.numberOfRooms" title=""></textarea>
+            </md-input-container>
+            <md-input-container md-no-float="" class="md-block" flex="50">
+                <label>How many people live/work in your place?</label>
+                <textarea ng-model="user.numberOfPeople" title=""></textarea>
+            </md-input-container>
+        </div>
 
-    <!--<div layout-gt-xs="row">-->
-    <!--<md-input-container class="md-block" flex-gt-xs="">-->
-    <!--<label>Company (Disabled)</label>-->
-    <!--<input ng-model="user.company" disabled="" title="">-->
-    <!--</md-input-container>-->
+        <div layout="row">
+            <md-input-container md-no-float="" class="md-block" flex="50">
+                <label>How many visitors do you have every month?</label>
+                <textarea ng-model="user.numberOfVisitors" title=""></textarea>
+            </md-input-container>
+            <md-input-container md-no-float="" class="md-block" flex="50">
+                <label>What's the average size of your space?</label>
+                <md-select ng-model="user.averageSize">
+                    <md-option ng-repeat="placeType in placeTypes" ng-value="placeType.entry">
+                        {{placeType.entry}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
 
-    <!--<md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date">-->
-    <!--</md-datepicker>-->
-    <!--</div>-->
+        <div layout="row">
+            <md-input-container class="md-block" flex="">
+                <label>Biography</label>
+                <textarea ng-model="user.biography" cols="1" md-maxlength="150" rows="5" title=""></textarea>
+            </md-input-container>
+        </div>
 
+        <b>When is your space available?</b>
+        <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
+    </form>
 
-    <!--<md-input-container class="md-block">-->
-    <!--<label>Biography</label>-->
-    <!--<textarea ng-model="user.biography" cols="1" md-maxlength="150" rows="5" title=""></textarea>-->
-    <!--</md-input-container>-->
-
-
-    <!--</form>-->
-    <!--</div>-->
-    <!--</md-content>-->
 
 </div>

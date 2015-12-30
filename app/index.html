@@ -24,15 +24,18 @@
     <script src="questionnaire/questionnaire.js"></script>
     <script src="app.js"></script>
 
+
 </head>
 
 <body>
-<ul class="menu nav nav-pills">
-    <li><a href="#/hello">hello</a></li>
-    <li class="active"><a href="#/questionnaire">questionnaire</a></li>
-</ul>
-<div class="view-container">
-    <div ng-view class="view-frame"></div>
+<div class="main-wrapper">
+    <img class="tekuma-logo" src="images/tekuma.png" layout="row">
+    <!--<ul class="menu nav nav-pills">-->
+    <!--<li class="active"><a href="#/questionnaire">questionnaire</a></li>-->
+    <!--</ul>-->
+    <div class="view-container">
+        <div ng-view class="view-frame"></div>
+    </div>
 </div>
 </body>
 </html>

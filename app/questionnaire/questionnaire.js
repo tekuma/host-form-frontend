@@ -14,17 +14,24 @@ angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
             address: '1600 Amphitheatre Pkwy',
             city: 'Mountain View',
             state: 'CA',
-            biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
             postalCode: '94043',
 
             place: {
-                placeType: '',
+                placeType: 'Residential',
                 residentialDescription: '',
                 hospitalityDescription: '',
                 workspaceDescription: '',
                 retailDescription: '',
                 otherDescription: ''
-            }
+            },
+
+            numberOfRooms: '',
+            numberOfPeople: '',
+            numberOfVisitors: '',
+            averageSize: '',
+
+            biography: '',
+            submissionDate: ''
         };
 
         $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
@@ -36,13 +43,13 @@ angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
         $scope.placeTypes = ('Residential Hospitality Workspace Retail Other').split(' ').map(function (placeType) {
             return {entry: placeType};
         });
-        $scope.placeResidentialOptions = ('Airbnb ,Home Office ,Informal Event Space ,None ').split(',').map(function (option) {
+        $scope.placeResidentialOptions = ('Airbnb,Home Office,Informal Event Space,None').split(',').map(function (option) {
             return {entry: option}
         });
-        $scope.placeHospitalOptions = ('Airbnb ,B&B ,Vacation Rental ,Boutique Hotel ,Hotel ').split(',').map(function (option) {
+        $scope.placeHospitalOptions = ('Airbnb,B&B,Vacation Rental,Boutique Hotel,Hotel').split(',').map(function (option) {
             return {entry: option}
         });
-        $scope.placeWorkspaceOptions = ('Coworking Space ,Private Office ,Conference Room ,Lobby ,Lounge/Cafe ').split(',').map(function (option) {
+        $scope.placeWorkspaceOptions = ('Coworking Space,Private Office,Conference Room,Lobby,Lounge/Cafe').split(',').map(function (option) {
             return {entry: option}
         });
 
