@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <title>Host Form</title>
 
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="questionnaire/questionnaire.css">
-    <link rel="stylesheet" href="app.css">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/angular-material/angular-material.css" rel="stylesheet">
+    <link href="bower_components/angular-material-icons/angular-material-icons.css" rel="stylesheet">
+    <link href="questionnaire/questionnaire.css" rel="stylesheet">
+    <link href="app.css" rel="stylesheet">
     <!-- for CSS Transitions and/or Keyframe Animations -->
 
     <script src="bower_components/angular/angular.js"></script>
@@ -16,19 +17,25 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.js"></script>
+    <script src="bower_components/ng-flow/dist/ng-flow-standalone.js"></script>
 
-    <script src="app.js"></script>
+    <script src="directives/tkMdCapitalizeFirstLetter.js"></script>
     <script src="questionnaire/questionnaire.js"></script>
+    <script src="app.js"></script>
+
 
 </head>
 
 <body>
-<ul class="menu nav nav-pills">
-    <li><a href="#/hello">hello</a></li>
-    <li class="active"><a href="#/questionnaire">questionnaire</a></li>
-</ul>
-<div class="view-container">
-    <div ng-view class="view-frame"></div>
+<div class="main-wrapper">
+    <img class="tekuma-logo" src="images/tekuma.png" layout="row">
+    <!--<ul class="menu nav nav-pills">-->
+    <!--<li class="active"><a href="#/questionnaire">questionnaire</a></li>-->
+    <!--</ul>-->
+    <div class="view-container">
+        <div ng-view class="view-frame"></div>
+    </div>
 </div>
 </body>
 </html>

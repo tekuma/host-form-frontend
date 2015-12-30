@@ -1,1 +1,13 @@
-/* app css stylesheet */
+/* all Angular material icons */
+.tekuma-logo {
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-wrapper {
+    padding: 10px;
+}
+
+.main-wrapper .view-container {
+    padding: 10px;
+}
