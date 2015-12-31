@@ -53,6 +53,10 @@ angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
             return {entry: option}
         });
 
+        $scope.averageSizeOptions = ('Less than 400 square feet.,400-800 square feet,800+ square feet').split(',').map(function (option) {
+            return {entry: option}
+        });
+
     })
 
     .config(function ($mdThemingProvider) {

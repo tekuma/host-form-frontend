@@ -178,8 +178,8 @@
             <md-input-container md-no-float="" class="md-block" flex="50">
                 <label>What's the average size of your space?</label>
                 <md-select ng-model="user.averageSize">
-                    <md-option ng-repeat="placeType in placeTypes" ng-value="placeType.entry">
-                        {{placeType.entry}}
+                    <md-option ng-repeat="averageSizeOption in averageSizeOptions" ng-value="averageSizeOption.entry">
+                        {{averageSizeOption.entry}}
                     </md-option>
                 </md-select>
             </md-input-container>

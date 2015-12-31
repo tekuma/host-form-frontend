@@ -2,12 +2,14 @@
 .tekuma-logo {
     width: 100%;
     overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 25px;
 }
 
 .main-wrapper {
-    padding: 10px;
+    padding: 15px;
 }
 
 .main-wrapper .view-container {
-    padding: 10px;
+    padding: 20px;
 }
