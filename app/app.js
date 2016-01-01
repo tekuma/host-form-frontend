@@ -3,9 +3,10 @@
 /* App Module */
 angular.module('hostFormApp', [
         'ngRoute',
-        'hostForm.questionnaire',
         'ngMdIcons',
-        'tkMdCapitalizeFirstLetter'
+        'tkMdCapitalizeFirstLetter',
+        'hostForm.questionnaire',
+        'hostForm.testData'
     ])
 
     .config(['$routeProvider',
@@ -15,9 +16,9 @@ angular.module('hostFormApp', [
                 templateUrl: 'questionnaire/questionnaire.html',
                 controller: 'QuestionnaireCtrl'
             }).
-            when('/hello', {
-                templateUrl: 'hello/hello.html',
-                controller: 'HelloCtrl'
+            when('/testData', {
+                templateUrl: 'testData/testData.html',
+                controller: 'TestDataCtrl'
             }).
             otherwise({
                 redirectTo: '/questionnaire'

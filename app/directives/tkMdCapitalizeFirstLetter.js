@@ -27,4 +27,4 @@ angular.module('tkMdCapitalizeFirstLetter', [])
                 capitalize($parse(attrs.ngModel)(scope)); // capitalize initial value
             }
         };
-    })
+    });
