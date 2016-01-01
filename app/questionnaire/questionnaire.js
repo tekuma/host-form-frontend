@@ -3,7 +3,7 @@
 /* Questionnaire controller module */
 angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
 
-    .controller('QuestionnaireCtrl', function ($scope) {
+    .controller('QuestionnaireCtrl', [ '$scope', function ($scope) {
         // The renamed flow object
         $scope.uploader = {};
 
@@ -57,7 +57,7 @@ angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
             return {entry: option}
         });
 
-    })
+    }])
 
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')

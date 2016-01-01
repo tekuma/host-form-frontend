@@ -1,0 +1,15 @@
+<div ng-controller="TestDataCtrl" ng-app="hostFormApp">
+    All persons:
+    <ul>
+        <li ng-repeat="testPerson in testPersons">
+            {{testPerson}}
+        </li>
+    </ul>
+
+    <form>
+        <input type="text" title="" ng-model="addPersonInput"/>
+        <button ng-click="addPerson(addPersonInput)">Add Person</button>
+    </form>
+
+    <p>Added person name is: {{addedPersonName}}</p>
+</div>
