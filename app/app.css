@@ -2,12 +2,12 @@
 .tekuma-logo {
     width: 100%;
     overflow: hidden;
-    padding-top: 10px;
-    padding-bottom: 25px;
+    padding: 2vw 2vw 3vw 2vw;
 }
 
 .main-wrapper {
-    padding: 15px;
+    width: 100%;
+    padding: 2vw;
 }
 
 .main-wrapper .view-container {

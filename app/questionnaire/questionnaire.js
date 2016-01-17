@@ -76,4 +76,5 @@ angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
         flowFactoryProvider.on('catchAll', function (event) {
             console.log('catchAll', arguments);
         });
+        flowFactoryProvider.factory = fustyFlowFactory;
     }]);
