@@ -6,8 +6,12 @@ ng-md-icon {
     fill: #EE0088
 }
 
+.glyphicon.glyphicon-cloud-upload {
+    color: #EE0088;
+}
+
 .spaceTypeRadioButton md-input-container {
-    text-align: center;
+    text-align: left;
 }
 
 .spaceTypeRadioButton md-input-container md-radio-group md-radio-button {
