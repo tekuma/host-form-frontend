@@ -6,12 +6,15 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "1.4.x",
-    "angular-mocks": "1.4.x",
+    "angular": "~1.4.x",
+    "angular-mocks": "~1.4.x",
     "bootstrap": "~3.1.1",
-    "angular-route": "1.4.x",
+    "angular-route": "~1.4.x",
     "angular-material": "^1.0.0",
     "angular-material-icons": "~0.6.0",
     "ng-flow": "~2.6.1"
+  },
+  "resolutions": {
+    "angular": "~1.4.x"
   }
 }
