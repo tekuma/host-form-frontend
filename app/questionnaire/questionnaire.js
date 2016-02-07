@@ -9,16 +9,13 @@ angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
 
         $scope.user = {
             email: '',
-            name: 'fei niu',
-            company: 'Google',
-            address: '1600 Amphitheatre Pkwy',
-            city: 'Mountain View',
-            state: 'CA',
-            postalCode: '94043',
+            name: '',
+            city: '',
 
             place: {
                 placeType: 'Residential',
                 residentialDescription: '',
+                residentialAirBnbUrl: '',
                 hospitalityDescription: '',
                 workspaceDescription: '',
                 retailDescription: '',
@@ -34,12 +31,17 @@ angular.module('hostForm.questionnaire', ['ngMaterial', 'ngMessages', 'flow'])
             submissionDate: ''
         };
 
+
+        // default values
+        $scope.roomNumberOptions = ([1, 2, 3, 4, 5, 'More than 5']);
+        $scope.artWorkNumberOptions = (['1 to 3 ($300)', '4 to 6 ($500)']);
+        $scope.primaryUseOptions = (['friends & family', 'strangers']);
+        $scope.peopleNumberOptions = (['1 to 2', '3 to 5', '6 to 10', 'more than 10', "I don't know"]);
         $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
         'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
         'WY').split(' ').map(function (state) {
             return {abbrev: state};
         });
-
         $scope.placeTypes = ('Residential Hospitality Workspace Retail Other').split(' ').map(function (placeType) {
             return {entry: placeType};
         });

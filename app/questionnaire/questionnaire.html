@@ -1,95 +1,34 @@
 <div ng-controller="QuestionnaireCtrl" ng-cloak="" class="md-inline-form" ng-app="hostFormApp" layout-padding>
 
     <!--TODO: 1. Add submit button 2. Put forms in different files -->
-    <form name="userNameAndEmailForm" layout="column">
-        <md-input-container class="md-block">
-            <label>
-                <ng-md-icon icon="perm_identity"></ng-md-icon>
-                Hi! What is your name?</label>
-            <input name="userName" ng-model="user.name" title="" capitalize-first-letter="" required>
 
-            <div ng-messages="userNameAndEmailForm.userName.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">You must provide your name.</div>
-            </div>
-        </md-input-container>
-
-        <md-input-container class="md-block">
-            <label>
-                <ng-md-icon icon="email"></ng-md-icon>
-                What is your email?</label>
-            <input name="userEmail" ng-model="user.email" type="email" title="" required ng-pattern="/^.+@.+\..+$/">
-
-            <div ng-messages="userNameAndEmailForm.userEmail.$error" role="alert" multiple>
-                <div ng-message-exp="['required', 'pattern']">
-                    You must provide a valid email.
-                </div>
-            </div>
-        </md-input-container>
-    </form>
-
-
-    <form name="userAddressForm" layout="column">
-        <md-input-container class="md-block" flex>
-            <label>
-                <ng-md-icon icon="place"></ng-md-icon>
-                Address of your place</label>
-            <input ng-model="user.address" title="">
-        </md-input-container>
-
-        <md-input-container flex>
-            <label>City</label>
-            <input ng-model="user.city" title="">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-            <label>State</label>
-            <md-select ng-model="user.state">
-                <md-option ng-repeat="state in states" ng-value="state.abbrev">
-                    {{state.abbrev}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-
-        <md-input-container class="md-block">
-            <label>Postal Code</label>
-            <input name="postalCode" ng-model="user.postalCode" placeholder="12345" required=""
-                   ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-
-            <div ng-messages="userAddressForm.postalCode.$error" role="alert" multiple>
-                <div ng-message="required" class="my-message">You must supply a postal code.</div>
-                <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
-                    code.
-                </div>
-                <div ng-message="md-maxlength" class="my-message">
-                    Don't use the long version silly...we don't need to be that specific...
-                </div>
-            </div>
-        </md-input-container>
-    </form>
-
+    <header>
+        <h1><span class="with-tekuma-pink-color">1.</span> How is your space?</h1>
+    </header>
 
     <form name="userSpaceForm">
-        <md-input-container class="md-block">
-            <label>What type of space do you have?</label>
-            <md-select ng-model="user.place.placeType">
-                <md-option ng-repeat="placeType in placeTypes" ng-value="placeType.entry">
-                    {{placeType.entry}}
-                </md-option>
-            </md-select>
-        </md-input-container>
-
+        <label for="userPlaceTypeSelect"> What type of space do you have? </label>
+        <select id="userPlaceTypeSelect" ng-model="user.place.placeType" class="form-control">
+            <option ng-repeat="placeType in placeTypes" value="{{placeType.entry}}">{{placeType.entry}}</option>
+        </select>
 
         <div class="spaceTypeRadioButton">
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Residential'">
+            <md-input-container class="md-block" ng-show="user.place.placeType==='Residential'">
                 <md-radio-group ng-model="user.place.residentialDescription" layout="row" layout-xs="column"
-                                layout-sm="column" layout-align="center start">
+                                layout-align="center start">
                     <md-radio-button ng-repeat="placeResidentialOption in placeResidentialOptions"
                                      ng-value="placeResidentialOption.entry">{{placeResidentialOption.entry}}
                     </md-radio-button>
                 </md-radio-group>
             </md-input-container>
+            <input type="text"
+                   ng-show="user.place.placeType==='Residential' && user.place.residentialDescription==='Airbnb'"
+                   class="form-control"
+                   ng-module="user.place.residentialAirBnbUrl"
+                   placeholder="Enter Airbnb listing URL"
+                   style="margin-bottom: 2.5em">
 
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Hospitality'">
+            <md-input-container class="md-block" ng-show="user.place.placeType==='Hospitality'">
                 <md-radio-group ng-model="user.place.hospitalityDescription" layout="row" layout-xs="column"
                                 layout-sm="column" layout-align="center start">
                     <md-radio-button ng-repeat="placeHospitalOption in placeHospitalOptions"
@@ -98,7 +37,7 @@
                 </md-radio-group>
             </md-input-container>
 
-            <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Workspace'">
+            <md-input-container class="md-block" ng-show="user.place.placeType==='Workspace'">
                 <md-radio-group ng-model="user.place.residentialDescription" layout="row" layout-xs="column"
                                 layout-sm="column" layout-align="center start">
                     <md-radio-button ng-repeat="placeWorkspaceOption in placeWorkspaceOptions"
@@ -108,11 +47,72 @@
             </md-input-container>
         </div>
 
-        <md-input-container md-no-float="" class="md-block" ng-show="user.place.placeType==='Other'">
+        <md-input-container class="md-block" ng-show="user.place.placeType==='Other'">
     <textarea ng-model="user.place.otherDescription" cols="1" md-maxlength="150" rows="5" title=""
               placeholder="Describes your space?"></textarea>
         </md-input-container>
 
+        <br>
+
+        <label for="userPlaceRoomNumberSelect">How many spaces do you want to curate?</label>
+        <select id="userPlaceRoomNumberSelect"
+                name="userPlaceRoomNumberSelect"
+                ng-model="user.numberOfRooms"
+                class="form-control"
+                ng-options="roomNumberOption as roomNumberOption for roomNumberOption in roomNumberOptions"
+                required>
+            <option value="">Select room number</option>
+        </select>
+    <span ng-show="userSpaceForm.userPlaceRoomNumberSelect.$touched && userSpaceForm.userPlaceRoomNumberSelect.$error.required"
+          class="error-message">* Select room number</span>
+
+        <br>
+        <br>
+
+        <label for="userPlaceArtWorkNumberSelect">How many art works does each place need?</label>
+        <select id="userPlaceArtWorkNumberSelect"
+                name="userPlaceArtWorkNumberSelect"
+                ng-model="user.numberOfArtWorks"
+                class="form-control"
+                ng-options="artWorkNumberOption as artWorkNumberOption for artWorkNumberOption in artWorkNumberOptions"
+                required>
+            <option value="">Select art work number</option>
+        </select>
+    <span ng-show="userSpaceForm.userPlaceArtWorkNumberSelect.$touched && userSpaceForm.userPlaceArtWorkNumberSelect.$error.required"
+          class="error-message">* Select art work number</span>
+
+        <br>
+        <br>
+
+        <label for="userPlacePrimaryUseSelect">Who primarily use your space?</label>
+        <select id="userPlacePrimaryUseSelect"
+                name="userPlacePrimaryUseSelect"
+                ng-model="user.primaryUse"
+                class="form-control"
+                ng-options="primaryUseOption as primaryUseOption for primaryUseOption in primaryUseOptions"
+                required>
+            <option value="">Select primary use</option>
+        </select>
+    <span ng-show="userSpaceForm.userPlacePrimaryUseSelect.$touched && userSpaceForm.userPlacePrimaryUseSelect.$error.required"
+          class="error-message">* Select primary use</span>
+
+        <br>
+        <br>
+
+        <label for="userPeopleNumberSelect">How many use your place monthly?</label>
+        <select id="userPeopleNumberSelect"
+                name="userPeopleNumberSelect"
+                ng-model="user.numberOfPeople"
+                class="form-control"
+                ng-options="peopleNumberOption as peopleNumberOption for peopleNumberOption in peopleNumberOptions"
+                required>
+            <option value="">Select number of people</option>
+        </select>
+    <span ng-show="userSpaceForm.userPeopleNumberSelect.$touched && userSpaceForm.userPeopleNumberSelect.$error.required"
+          class="error-message">* Select number of people</span>
+
+        <br>
+        <br>
     </form>
 
 
@@ -125,12 +125,12 @@
              flow-files-submitted="uploader.flow.upload()"
              flow-file-added="!!{png: 1, gif: 1, jpg: 1, jpeg: 1}[$file.getExtension()]">
             <div layout="column" layout-align="center center" class="drag-zone" flow-drop ng-class="dropClass">
-                <p class="md-title">Upload pictures of your space.</p>
+                <p class="md-title">Upload or take pictures of your space.</p>
                 <label for="file-input">
                     <!-- Hard coding, attention please! This is to overcome a bug that ng-flow button cannot be used in mobile devices -->
-                    <span class="glyphicon glyphicon-cloud-upload" style="font-size: 5em;"></span>
                     <input id="file-input" type="file" flow-btn
-                           style="opacity: 0; position: absolute; left: 0; font-size: 12em; display: inline; float: left;"/>
+                           style="opacity: 0; position: absolute; left: 0; font-size: 5em; display: inline; float: left; padding-top: 0.5em; z-index: 1"/>
+                    <span class="glyphicon glyphicon-cloud-upload" style="font-size: 5em;"></span>
                 </label>
             </div>
 
@@ -160,35 +160,79 @@
     </form>
 
 
-    <form name="userMiscellaneousForm" layout="column">
-        <md-input-container md-no-float="" class="md-block">
-            <label>How many rooms do you have?</label>
-            <textarea ng-model="user.numberOfRooms" title=""></textarea>
-        </md-input-container>
-        <md-input-container md-no-float="" class="md-block">
-            <label>How many people live/work in your place?</label>
-            <textarea ng-model="user.numberOfPeople" title=""></textarea>
-        </md-input-container>
+    <header>
+        <h1><span class="with-tekuma-pink-color">2.</span> Lastly, tell us a little about yourself.</h1>
+    </header>
 
-        <md-input-container md-no-float="" class="md-block">
-            <label>How many visitors do you have every month?</label>
-            <textarea ng-model="user.numberOfVisitors" title=""></textarea>
-        </md-input-container>
-        <md-input-container md-no-float="" class="md-block">
-            <label>What's the average size of your space?</label>
-            <md-select ng-model="user.averageSize">
-                <md-option ng-repeat="averageSizeOption in averageSizeOptions" ng-value="averageSizeOption.entry">
-                    {{averageSizeOption.entry}}
-                </md-option>
-            </md-select>
-        </md-input-container>
+    <form name="userInfoForm">
 
-        <md-input-container class="md-block">
-            <label>Biography</label>
-            <textarea ng-model="user.biography" cols="1" md-maxlength="150" rows="5" title=""></textarea>
-        </md-input-container>
+        <label for="userName">Hi, my name is</label>
+        <input id="userName"
+               name="userName"
+               class="form-control"
+               ng-model="user.name"
+               placeholder="Your full name"
+               capitalize-first-letter=""
+               required>
+        <span ng-show="userInfoForm.userName.$touched && userInfoForm.userName.$error.required" class="error-message">
+            * You must provide your name.
+        </span>
 
-        <b>When is your space available?</b>
+        <br>
+
+        <label for="userEmail">Email me at</label>
+        <input id="userEmail"
+               name="userEmail"
+               class="form-control"
+               ng-model="user.email"
+               type="email"
+               placeholder="name@exmaple.com"
+               required
+               ng-pattern="/^.+@.+\..+$/">
+        <span flex ng-show="userInfoForm.userEmail.$touched && userInfoForm.userEmail.$invalid" class="error-message">
+            * You must provide a valid email.
+        </span>
+
+        <br>
+
+        <label for="userCity">My spaces is in this city</label>
+        <input id="userCity"
+               name="userCity"
+               class="form-control"
+               ng-model="user.city"
+               placeholder="City"
+               required>
+        <span ng-show="userInfoForm.userCity.$touched && userInfoForm.userCity.$invalid" class="error-message">
+            * You must provide a city name.
+        </span>
+
+        <br>
+
+        <label for="userPhone">My phone # is</label>
+        <input id="userPhone"
+               name="userPhone"
+               class="form-control"
+               ng-model="user.phone"
+               placeholder="Phone"
+               required>
+        <span ng-show="userInfoForm.userCity.$touched && userInfoForm.userCity.$invalid" class="error-message">
+            * You must provide a city name.
+        </span>
+
+        <br>
+        <br>
+
+        <b>
+        Do you also want out team to install the artworks?
+        It's free if you are in Boston!
+        </b>
+        <md-radio-group ng-model="user.installByUs" layout="row">
+            <md-radio-button flex value="Apple"> No thank you.</md-radio-button>
+            <md-radio-button flex value="Banana"> Yes please!</md-radio-button>
+        </md-radio-group>
+
+
+        <b>I want this done</b>
         <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
     </form>
 

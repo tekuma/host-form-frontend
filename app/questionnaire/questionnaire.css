@@ -1,15 +1,52 @@
-.md-datepicker-button {
-    width: 36px;
+.error-message {
+    display: inline-block;
+    margin-bottom: 1em;
+    color: red;
 }
 
-ng-md-icon {
-    fill: #EE0088
-}
-
-.glyphicon.glyphicon-cloud-upload {
+.with-tekuma-pink-color {
     color: #EE0088;
 }
 
+/* The selection box in the form */
+.form-control {
+    border-color: #EE0088;
+}
+
+select.form-control {
+    color: #EE0088;
+    font-weight: bold;
+}
+
+.form-control:focus {
+    border-color: #EE0088;
+}
+
+input.form-control {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+input.form-control:focus {
+    box-shadow: none;
+}
+
+/* END: The selection box in the form */
+
+
+/* Uploading icon */
+ng-md-icon {
+    fill: #EE0088
+}
+.glyphicon.glyphicon-cloud-upload {
+    color: #EE0088;
+}
+/* END: Uploading icon */
+
+
+/* Radio button*/
 .spaceTypeRadioButton md-input-container {
     text-align: left;
 }
@@ -22,6 +59,8 @@ ng-md-icon {
     color: #EE0088;
     font-size: 0.9em;
 }
+/* END: Radio button*/
+
 
 /* image drag */
 .drag-zone {
@@ -72,3 +111,4 @@ ng-md-icon {
     overflow: hidden;
     display: block;
 }
+/*END: image drag */
