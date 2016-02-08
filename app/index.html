@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" ng-app="hostFormApp">
 <head>
-    <meta name = "viewport" content = "width=device-width, maximum-scale=1.0, initial-scale=1.0" property="">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0" property="">
     <meta charset="utf-8">
     <title>Host Form</title>
 
@@ -30,15 +30,20 @@
 </head>
 
 <body>
+<div class="header-section" layout="row">
+    <a flex-offset="5" flex="10" href="http://tekuma.io/">
+        <div class="glyphicon glyphicon-home"></div>
+    </a>
 
-<div class="main-wrapper">
-    <img class="tekuma-logo" src="images/tekuma.png">
-    <!--<ul class="menu nav nav-pills">-->
-    <!--<li class="active"><a href="#/questionnaire">questionnaire</a></li>-->
-    <!--</ul>-->
-    <div class="view-container">
-        <div ng-view class="view-frame"></div>
-    </div>
+    <a flex="30" href="http://tekuma.io/">
+        <img class="tekuma-logo" src="images/tekuma.png">
+    </a>
+</div>
+<!--<ul class="menu nav nav-pills">-->
+<!--<li class="active"><a href="#/questionnaire">questionnaire</a></li>-->
+<!--</ul>-->
+<div class="view-container">
+    <div ng-view class="view-frame"></div>
 </div>
 </body>
 </html>

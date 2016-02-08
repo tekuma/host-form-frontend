@@ -6,18 +6,25 @@ html, body {
     overflow-x: hidden; /* to remove the empty space on the right of the page */
 }
 
-/* all Angular material icons */
-.tekuma-logo {
-    width: 100%;
+.header-section {
+    background-color: darkgray;
+    height: 15vw;
+    padding: 0 0 0 0;
+}
+.header-section .tekuma-logo {
+    width: auto;
+    height: 10vw;
     overflow: hidden;
-    padding: 2vw 2vw 3vw 2vw;
+    padding: 5vw 1vw 1vw 1vw;
+    margin-top: 1vw;
+}
+.header-section .glyphicon {
+    font-size: 5vw;
+    color: #EE0088;
+    padding: 5vw 1vw 1vw 1vw;
 }
 
-.main-wrapper {
-    width: 100%;
-    padding: 2vw;
-}
 
-.main-wrapper .view-container {
+.view-container {
     padding: 20px;
 }
